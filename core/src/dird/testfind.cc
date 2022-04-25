@@ -29,7 +29,8 @@
 #include "dird/dird.h"
 #include "findlib/find.h"
 #include "lib/mntent_cache.h"
-#include "ch.h"
+#include "include/ch.h"
+#include "filed/fd_plugins.h"
 
 #if defined(HAVE_WIN32)
 #  define isatty(fd) (fd == 0)
@@ -39,7 +40,7 @@ using namespace directordaemon;
 
 /* Dummy functions */
 void GeneratePluginEvent(JobControlRecord* jcr,
-                         bEventType eventType,
+                         filedaemon::bEventType eventType,
                          void* value)
 {
 }
@@ -130,6 +131,8 @@ int main(int argc, char* const* argv)
 
   argc -= optind;
   argv += optind;
+
+  ConfigurationParser* my_config = nullptr;
 
   my_config = InitDirConfig(configfile, M_ERROR_TERM);
   my_config->ParseConfig();
@@ -454,7 +457,7 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
             = (findIncludeExcludeItem*)malloc(sizeof(findIncludeExcludeItem));
         memset(fileset->incexe, 0, sizeof(findIncludeExcludeItem));
         fileset->incexe->opts_list.init(1, true);
-        fileset->incexe->name_list.init(0, 0);
+        fileset->incexe->name_list.init(0, false);
         fileset->exclude_list.append(fileset->incexe);
       }
 
