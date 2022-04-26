@@ -443,15 +443,15 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
     if (include) {
       num = jcr_fileset->include_items.size();
     } else {
-      num = jcr_fileset->include_items.size();
+      num = jcr_fileset->exclude_items.size();
     }
     for (int i = 0; i < num; i++) {
       IncludeExcludeItem* ie;
+      ;
       int j, k;
 
       if (include) {
         ie = jcr_fileset->include_items[i];
-
         /* New include */
         fileset->incexe = new findIncludeExcludeItem;
         fileset->incexe->opts_list.init(1, true);
