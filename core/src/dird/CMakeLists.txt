@@ -190,7 +190,7 @@ target_link_libraries(
 # is not built by default
 
 add_executable(testfind ${TSTFNDSRCS})
-target_link_libraries(testfind bareos bareosfind jansson ${OPENSSL_LIBS} acl cap lzo2 )
+target_link_libraries(testfind bareos bareosfind jansson ${OPENSSL_LIBRARIES} acl cap lzo2 )
 
 install(TARGETS bareos-dir bareos-dbcheck DESTINATION "${sbindir}")
 
