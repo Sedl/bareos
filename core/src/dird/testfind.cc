@@ -143,8 +143,6 @@ int main(int argc, char* const* argv)
   argc -= optind;
   argv += optind;
 
-  ConfigurationParser* my_config = nullptr;
-
   my_config = InitDirConfig(configfile, M_ERROR_TERM);
   my_config->ParseConfig();
 
@@ -432,9 +430,9 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
   findFILESET* fileset;
   findFOPTS* current_opts;
 
-  //  fileset = (findFILESET*)malloc(sizeof(findFILESET));
-  //  memset(fileset, 0, sizeof(findFILESET));
-  fileset = {};
+  fileset = new findFILESET;
+  // memset(fileset, 0, sizeof(findFILESET));
+  // fileset = {};
   ff->fileset = fileset;
 
   fileset->state = state_none;
@@ -455,10 +453,7 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
         ie = jcr_fileset->include_items[i];
 
         /* New include */
-        fileset->incexe
-            = (findIncludeExcludeItem*)malloc(sizeof(findIncludeExcludeItem));
-        //        memset(fileset->incexe, 0, sizeof(findIncludeExcludeItem));
-        fileset->incexe = {};
+        fileset->incexe = new findIncludeExcludeItem;
         fileset->incexe->opts_list.init(1, true);
         fileset->incexe->name_list.empty();
         fileset->include_list.append(fileset->incexe);
@@ -466,10 +461,7 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
         ie = jcr_fileset->exclude_items[i];
 
         /* New exclude */
-        fileset->incexe
-            = (findIncludeExcludeItem*)malloc(sizeof(findIncludeExcludeItem));
-        //        memset(fileset->incexe, 0, sizeof(findIncludeExcludeItem));
-        fileset->incexe = {};
+        fileset->incexe = new findIncludeExcludeItem;
         fileset->incexe->opts_list.init(1, true);
         fileset->incexe->name_list.empty();
         fileset->exclude_list.append(fileset->incexe);
@@ -478,9 +470,7 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
       for (j = 0; j < static_cast<int>(ie->file_options_list.size()); j++) {
         FileOptions* fo = ie->file_options_list[j];
 
-        current_opts = (findFOPTS*)malloc(sizeof(findFOPTS));
-        //        memset(current_opts, 0, sizeof(findFOPTS));
-        current_opts = {};
+        current_opts = new findFOPTS;
         fileset->incexe->current_opts = current_opts;
         fileset->incexe->opts_list.append(current_opts);
 
