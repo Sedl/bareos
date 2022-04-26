@@ -29,7 +29,15 @@
 #include "dird/dird.h"
 #include "findlib/find.h"
 #include "lib/mntent_cache.h"
-#include "ch.h"
+#include "include/ch.h"
+#include "filed/fd_plugins.h"
+#include "lib/parse_conf.h"
+#include "dird/job.h"
+#include "dird/dird_globals.h"
+#include "dird/dird_conf.h"
+#include "dird/jcr_private.h"
+#include "lib/recent_job_results_list.h"
+#include "findlib/attribs.h"
 
 #if defined(HAVE_WIN32)
 #  define isatty(fd) (fd == 0)
@@ -39,7 +47,7 @@ using namespace directordaemon;
 
 /* Dummy functions */
 void GeneratePluginEvent(JobControlRecord* jcr,
-                         bEventType eventType,
+                         filedaemon::bEventType eventType,
                          void* value)
 {
 }
@@ -130,6 +138,8 @@ int main(int argc, char* const* argv)
 
   argc -= optind;
   argv += optind;
+
+  ConfigurationParser* my_config = nullptr;
 
   my_config = InitDirConfig(configfile, M_ERROR_TERM);
   my_config->ParseConfig();
@@ -418,8 +428,9 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
   findFILESET* fileset;
   findFOPTS* current_opts;
 
-  fileset = (findFILESET*)malloc(sizeof(findFILESET));
-  memset(fileset, 0, sizeof(findFILESET));
+  //  fileset = (findFILESET*)malloc(sizeof(findFILESET));
+  //  memset(fileset, 0, sizeof(findFILESET));
+  fileset = {};
   ff->fileset = fileset;
 
   fileset->state = state_none;
@@ -428,9 +439,9 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
 
   for (;;) {
     if (include) {
-      num = jcr_fileset->num_includes;
+      num = jcr_fileset->include_items.size();
     } else {
-      num = jcr_fileset->num_excludes;
+      num = jcr_fileset->include_items.size();
     }
     for (int i = 0; i < num; i++) {
       IncludeExcludeItem* ie;
@@ -442,9 +453,10 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
         /* New include */
         fileset->incexe
             = (findIncludeExcludeItem*)malloc(sizeof(findIncludeExcludeItem));
-        memset(fileset->incexe, 0, sizeof(findIncludeExcludeItem));
+        //        memset(fileset->incexe, 0, sizeof(findIncludeExcludeItem));
+        fileset->incexe = {};
         fileset->incexe->opts_list.init(1, true);
-        fileset->incexe->name_list.init(0, 0);
+        fileset->incexe->name_list.empty();
         fileset->include_list.append(fileset->incexe);
       } else {
         ie = jcr_fileset->exclude_items[i];
@@ -452,17 +464,19 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
         /* New exclude */
         fileset->incexe
             = (findIncludeExcludeItem*)malloc(sizeof(findIncludeExcludeItem));
-        memset(fileset->incexe, 0, sizeof(findIncludeExcludeItem));
+        //        memset(fileset->incexe, 0, sizeof(findIncludeExcludeItem));
+        fileset->incexe = {};
         fileset->incexe->opts_list.init(1, true);
-        fileset->incexe->name_list.init(0, 0);
+        fileset->incexe->name_list.empty();
         fileset->exclude_list.append(fileset->incexe);
       }
 
-      for (j = 0; j < ie->num_opts; j++) {
-        FileOptions* fo = ie->opts_list[j];
+      for (j = 0; j < static_cast<int>(ie->file_options_list.size()); j++) {
+        FileOptions* fo = ie->file_options_list[j];
 
         current_opts = (findFOPTS*)malloc(sizeof(findFOPTS));
-        memset(current_opts, 0, sizeof(findFOPTS));
+        //        memset(current_opts, 0, sizeof(findFOPTS));
+        current_opts = {};
         fileset->incexe->current_opts = current_opts;
         fileset->incexe->opts_list.append(current_opts);
 
@@ -478,19 +492,19 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
 
         SetOptions(current_opts, fo->opts);
 
+        regex_t* temporary = nullptr;
+
         for (k = 0; k < fo->regex.size(); k++) {
           // fd->fsend("R %s\n", fo->regex.get(k));
-          current_opts->regex.append(strdup((const char*)fo->regex.get(k)));
+          current_opts->regex.append(temporary);
         }
         for (k = 0; k < fo->regexdir.size(); k++) {
           // fd->fsend("RD %s\n", fo->regexdir.get(k));
-          current_opts->regexdir.append(
-              strdup((const char*)fo->regexdir.get(k)));
+          current_opts->regexdir.append(temporary);
         }
         for (k = 0; k < fo->regexfile.size(); k++) {
           // fd->fsend("RF %s\n", fo->regexfile.get(k));
-          current_opts->regexfile.append(
-              strdup((const char*)fo->regexfile.get(k)));
+          current_opts->regexfile.append(temporary);
         }
         for (k = 0; k < fo->wild.size(); k++) {
           current_opts->wild.append(strdup((const char*)fo->wild.get(k)));
@@ -517,7 +531,7 @@ static bool CopyFileset(FindFilesPacket* ff, JobControlRecord* jcr)
 
       for (j = 0; j < ie->name_list.size(); j++) {
         fileset->incexe->name_list.append(
-            strdup((const char*)ie->name_list.get(j)));
+            new_dlistString(ie->name_list.get(j)));
       }
     }
 
