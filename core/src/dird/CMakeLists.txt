@@ -198,9 +198,9 @@ target_link_libraries(
   dird_objects
   jansson
   ${OPENSSL_LIBRARIES}
-  acl
-  cap
-  lzo2
+  ${ACL_LIBRARIES}
+  ${CAP_LIBRARIES}
+  ${LZO_LIBRARIES}
 )
 install(TARGETS bareos-dir bareos-dbcheck DESTINATION "${sbindir}")
 
