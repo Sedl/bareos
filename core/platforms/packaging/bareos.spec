@@ -1533,6 +1533,7 @@ mkdir -p %{?buildroot}/%{_libdir}/bareos/plugins/vmware_plugin
 %defattr(-, root, root)
 %{_bindir}/bregex
 %{_bindir}/bwild
+%{_sbindir}/testfind
 %{_sbindir}/bcopy
 %{_sbindir}/bextract
 %{_sbindir}/bls
