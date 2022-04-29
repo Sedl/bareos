@@ -27,6 +27,7 @@ and since Bareos version 20 this project adheres to [Semantic Versioning](https:
 - systemtest py3plug-fd-contrib-mysql_dump [PR #768]
 - systemtest py*plug-fd-contrib-bareos_tasks_mysql [PR #768]
 - webui: introduce rerun of multiple jobs at once [PR #1109]
+- dird: console: add the ability to rerun multiple commas separated jobids [PR #1170]
 
 ### Fixed
 - NDMP_BAREOS: support autoxflate plugin [PR #1013]
@@ -47,10 +48,15 @@ and since Bareos version 20 this project adheres to [Semantic Versioning](https:
 - webui: fix restore file tree rendering [PR #1127]
 - dir: fix crash when there are no jobs to consolidate [PR #1131]
 - webui: get volume and pool params from query instead of route [PR #1139]
-- FreeBSD packages: add missing ddl/update 2171_2192 and 2192_2210 files [PR #1147]
+- packaging: FreeBSD add missing ddl/update 2171_2192 and 2192_2210 files [PR #1147]
 - Fix director connects to client while `Connection From Director To Client` is disabled. [PR #1099]
 - cats: make `.bvfs_update` and `.bvfs_versions` take archive jobs into consideration [PR #1152]
 - Fix `always-incremental-consolidate` systemtest sporadic fails, and rename it. [PR #1154]
+- packaging: FreeBSD place all scripts into "normal" location /usr/local/lib/bareos/scripts [PR #1163]
+- [BUG #1445] adding quotes to director name when using `configure export`. [PR #1171]
+- FreeBSD packages: add missing ddl/update 2171_2192 and 2192_2210 files [PR #1147]
+- Fix director connects to client while `Connection From Director To Client` is disabled. [PR #1099]
+- dir: miscalculation when using `always incremental keep number` [PR #1159]
 
 ### Changed
 - contrib: rename Python modules to satisfy PEP8 [PR #768]
@@ -71,6 +77,7 @@ and since Bareos version 20 this project adheres to [Semantic Versioning](https:
 - cats: include only jobtypes in `list jobtotals` that write data to volumes [PR #1135]
 - jstreegrid: remove handling of IE < 8 using navigator interface to avoid warnings in chrome [PR #1140]
 - `bvfs_update` now uses `unordered_map` instead of `htable` for the pathid cache [PR #1138]
+- cats: filtered zero file jobs list is now sorted [PR #1172]
 
 ### Deprecated
 
@@ -155,5 +162,8 @@ and since Bareos version 20 this project adheres to [Semantic Versioning](https:
 [PR #1149]: https://github.com/bareos/bareos/pull/1149
 [PR #1152]: https://github.com/bareos/bareos/pull/1152
 [PR #1153]: https://github.com/bareos/bareos/pull/1153
+[PR #1154]: https://github.com/bareos/bareos/pull/1154
 [PR #1155]: https://github.com/bareos/bareos/pull/1155
+[PR #1163]: https://github.com/bareos/bareos/pull/1163
+[PR #1171]: https://github.com/bareos/bareos/pull/1171
 [unreleased]: https://github.com/bareos/bareos/tree/master

@@ -192,10 +192,10 @@ target_link_libraries(
 add_executable(testfind ${TSTFNDSRCS})
 target_link_libraries(
   testfind
+  dird_objects
   bareos
   bareosfind
   bareossql
-  dird_objects
   jansson
   ${OPENSSL_LIBRARIES}
   ${ACL_LIBRARIES}
