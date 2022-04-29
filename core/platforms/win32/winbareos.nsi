@@ -700,6 +700,7 @@ SectionIn 2 3
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
   File "bareos-dir.exe"
+  File "testfind.exe"
   File "bareos-dbcheck.exe"
   File "bsmtp.exe"
   File "bregex.exe"
@@ -2027,6 +2028,7 @@ ConfDeleteSkip:
   Delete "$INSTDIR\bareos-fd.exe"
   Delete "$INSTDIR\bareos-sd.exe"
   Delete "$INSTDIR\bareos-dir.exe"
+  Delete "$INSTDIR\testfind.exe"
   Delete "$INSTDIR\bareos-dbcheck.exe"
   Delete "$INSTDIR\btape.exe"
   Delete "$INSTDIR\bls.exe"

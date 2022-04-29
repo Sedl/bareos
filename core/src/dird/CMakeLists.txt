@@ -202,7 +202,7 @@ target_link_libraries(
   ${CAP_LIBRARIES}
   ${LZO_LIBRARIES}
 )
-install(TARGETS bareos-dir bareos-dbcheck DESTINATION "${sbindir}")
+install(TARGETS bareos-dir bareos-dbcheck testfind DESTINATION "${sbindir}")
 
 install(FILES query.sql DESTINATION "${scriptdir}")
 
