@@ -294,7 +294,7 @@ int JobqRemove(jobq_t* jq, JobControlRecord* jcr)
 
   P(jq->mutex);
   std::deque<jobq_item_t*>::iterator it;
-  for (it = jq->waiting_jobs.begin(); it < jq->waiting_jobs.end(); ++it) {
+  for (it = jq->waiting_jobs.begin(); it != jq->waiting_jobs.end(); ++it) {
     item = *it;
     if (jcr == item->jcr) {
       found = true;
@@ -494,7 +494,7 @@ extern "C" void* jobq_server(void* arg)
        */
       for (auto itje = jq->waiting_jobs.begin(); itje != jq->waiting_jobs.end();
            ++itje) {
-        // je is current job item on the queue, jn is the next one
+        je = *itje;
         JobControlRecord* jcr = je->jcr;
         if (itje == jq->waiting_jobs.end()) { break; }
 
