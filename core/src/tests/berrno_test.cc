@@ -22,11 +22,14 @@
 #if defined(HAVE_MINGW)
 #  include "include/bareos.h"
 #  include "gtest/gtest.h"
+#  include "gmock/gmock.h"
 #else
 #  include "gtest/gtest.h"
+#  include "gmock/gmock.h"
 #endif
 
 #include "lib/berrno.h"
+using ::testing::HasSubstr;
 
 // Error message differ on supported OS
 #ifdef HAVE_LINUX_OS
@@ -49,7 +52,7 @@ const char* socket_error_message
     = "No such file or directory (errno=2 | win_error=0x0000276D)";
 const char* win_socket_error_message = "Windows error 0x0000276D";
 const char* bind_error_message
-    = "No such file or directory (errno=2 | win_error=0x0000271F)";
+    = "No such file or directory (errno=2 | win_error=0x000027";
 #else
 #  error "error_messages for current OS undefined"
 #endif
@@ -98,6 +101,6 @@ TEST(berrno, errors)
   EXPECT_LT(operation_result, 0);
   if (operation_result < 0) {
     BErrNo be;
-    EXPECT_STREQ(be.bstrerror(), bind_error_message);
+    EXPECT_THAT(be.bstrerror(), HasSubstr(bind_error_message));
   }
 }
