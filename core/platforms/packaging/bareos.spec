@@ -250,7 +250,9 @@ BuildRequires: passwd
 # Some magic to be able to determine what platform we are running on.
 %if 0%{?rhel_version} || 0%{?centos_version} || 0%{?fedora_version}
 
+%if 0%{?centos_version} < 900
 BuildRequires: redhat-lsb
+%endif
 
 # older versions require additional release packages
 %if 0%{?rhel_version}   && 0%{?rhel_version} <= 600
