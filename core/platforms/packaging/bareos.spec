@@ -211,7 +211,7 @@ BuildRequires: qt-devel
 
 
 %if 0%{?python_plugins}
-  %if 0%{?centos_version} == 800 || 0%{?rhel_version} == 800 || 0%{?fedora} >= 31
+  %if 0%{?centos_version} == 800 || 0%{?rhel_version} == 800
 BuildRequires: python2-devel >= 2.6
 BuildRequires: python3-devel >= 3.4
   %endif
