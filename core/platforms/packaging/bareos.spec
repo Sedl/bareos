@@ -155,7 +155,7 @@ BuildRequires: librados-devel
 BuildRequires: librados2-devel
 BuildRequires: libcephfs1-devel
     %else
-      %if 0%{?rhel} >= 8
+      %if 0%{?rhel} == 8 || 0%{?rhel} == 9
 BuildRequires: librados-devel
 BuildRequires: libradosstriper-devel
 BuildRequires: libcephfs-devel
@@ -212,7 +212,9 @@ BuildRequires: qt-devel
 
 %if 0%{?python_plugins}
 %if 0%{?centos_version} >= 800 || 0%{?rhel_version} >= 800 || 0%{?fedora} >= 31
+   %if 0%{?centos_version} < 900 || 0%{?rhel_version} < 900
 BuildRequires: python2-devel >= 2.6
+   %endif
 BuildRequires: python3-devel >= 3.4
 %else
 BuildRequires: python-devel >= 2.6
