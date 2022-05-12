@@ -155,7 +155,7 @@ BuildRequires: librados-devel
 BuildRequires: librados2-devel
 BuildRequires: libcephfs1-devel
     %else
-      %if 0%{?rhel} == 8
+      %if 0%{?rhel} >= 8
 BuildRequires: librados-devel
 BuildRequires: libradosstriper-devel
 BuildRequires: libcephfs-devel
