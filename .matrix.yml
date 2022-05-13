@@ -5,6 +5,16 @@ JENKINS_TESTTYPES:
   - bareos-universal-client
 
 OS:
+  Fedora:
+    "36":
+      TYPE: rpm
+      IMAGE: fedora36
+      ARCH:
+      - x86_64
+      PROJECTPACKAGES:
+        x86_64:
+           - bareos
+           - python-bareos
 
   EL:
     "9":
