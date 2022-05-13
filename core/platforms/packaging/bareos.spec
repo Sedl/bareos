@@ -783,7 +783,7 @@ BuildRequires: httpd-devel
 %define _apache_conf_dir /etc/httpd/conf.d/
 %define www_daemon_user  apache
 %define www_daemon_group apache
-%if 0%{?fedora_version} >= 33
+%if 0%{?fedora_version} >= 33 || 0%{?rhel_version} >= 900
 Requires:   php-fpm
 %else
 Requires:   mod_php
