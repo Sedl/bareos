@@ -220,6 +220,7 @@ BuildRequires: python3-devel >= 3.4
   %if 0%{?centos_version} == 900 || 0%{?rhel_version} == 900
 BuildRequires: python3-devel >= 3.4
 %define python2_available 0
+  %endif
 
   %if !0%{?centos_version} == 900 && !0%{?rhel_version} == 900 \
    && !0%{?centos_version} == 800 && !0%{?rhel_version} == 800
