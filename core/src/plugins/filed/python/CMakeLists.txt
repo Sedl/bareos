@@ -47,7 +47,9 @@ if(Python3_FOUND)
   )
   target_link_libraries(python3-fd ${Python3_LIBRARIES} bareos)
   target_include_directories(python3-fd PUBLIC ${Python3_INCLUDE_DIRS})
-  target_compile_definitions(python3-fd PUBLIC PY3MODDIR=\"${Python3_SITEARCH}\")
+  target_compile_definitions(
+    python3-fd PUBLIC PY3MODDIR=\"${Python3_SITEARCH}\"
+  )
   add_dependencies(bareos-fd python3-fd)
   add_dependencies(python3-fd bareosfd-python3-module)
 endif()
