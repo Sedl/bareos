@@ -444,7 +444,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   # c++17 removed register keyword
   set(Python2_CCSHARED -Wno-register)
 
-  set(Python2_SITELIB ${plugindir})
+  set(Python2_SITEARCH ${plugindir})
   set(Python3_SITEARCH ${plugindir})
 endif()
 
