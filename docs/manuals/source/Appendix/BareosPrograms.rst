@@ -862,10 +862,6 @@ wish to be able to use the Volume with the Console restore command, for example,
 
 By using a bootstrap file, you can copy parts of a Bareos archive file to another archive.
 
-One of the objectives of this program is to be able to recover as much data as possible from a damaged tape. However, the current version does not yet have this feature.
-
-As this is a new program, any feedback on its use would be appreciated. In addition, I only have a single tape drive, so I have never been able to test this program with two tape drives.
-
 
 .. _btape:
 
