@@ -207,7 +207,7 @@ int main(int argc, char* argv[])
       .add_option("bareos-archive-device-name", archive_device_name,
                   "Specify the input device name (either as name of a Bareos "
                   "Storage Daemon Device resource or identical to the Archive "
-                  "Device in a Bareos Storage Daemon Device resource.")
+                  "Device in a Bareos Storage Daemon Device resource).")
       ->required()
       ->type_name(" ");
 
