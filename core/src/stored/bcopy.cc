@@ -115,7 +115,7 @@ int main(int argc, char* argv[])
             DirectorName = strdup(val.front().c_str());
             return true;
           },
-          "Specify a director name specified in the storage.\n"
+          "Specify a director name specified in the storage. "
           "Configuration file for the Key Encryption Key selection.")
       ->type_name("<director>");
 
@@ -147,20 +147,27 @@ int main(int argc, char* argv[])
   std::string work_dir = "/tmp";
   bcopy_app
       .add_option("-w,--working-directory", work_dir,
-                  "specify working directory (default is /tmp).")
-      ->type_name("<directory>");
+                  "specify working directory.")
+      ->type_name("<directory>")
+      ->capture_default_str();
 
   std::string input_archive;
   bcopy_app
       .add_option("input-archive", input_archive,
-                  "Specify input archive names.")
+                  "Specify the input device name "
+                  "(either as name of a Bareos Storage Daemon Device resource "
+                  "or identical to the "
+                  "Archive Device in a Bareos Storage Daemon Device resource).")
       ->required()
       ->type_name(" ");
 
   std::string output_archive;
   bcopy_app
       .add_option("ouput-archive", output_archive,
-                  "Specify output archive names.")
+                  "Specify the output device name "
+                  "(either as name of a Bareos Storage Daemon Device resource "
+                  "or identical to the "
+                  "Archive Device in a Bareos Storage Daemon Device resource).")
       ->required()
       ->type_name(" ");
 
