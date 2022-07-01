@@ -193,33 +193,27 @@ int main(int argc, char* argv[])
   AddDebugOptions(bscan_app);
 
   std::string db_name = "bareos";
-  bscan_app
-      .add_option("-n,--dbname", db_name,
-                  "Specify database name (default: bareos).")
-      ->type_name("<name>");
+  bscan_app.add_option("-n,--dbname", db_name, "Specify database name.")
+      ->type_name("<name>")
+      ->capture_default_str();
 
   std::string db_host;
-  bscan_app
-      .add_option("-o,--dbhost", db_host,
-                  "Specify database host (default: none).")
+  bscan_app.add_option("-o,--dbhost", db_host, "Specify database host.")
       ->type_name("<host>");
 
   std::string db_password = "";
   bscan_app
-      .add_option("-P,--dbpassword", db_password,
-                  "Specify database password (default: none).")
+      .add_option("-P,--dbpassword", db_password, "Specify database password.")
       ->type_name("<password>");
 
   int db_port = 0;
-  bscan_app
-      .add_option("-t,--dbport", db_port, "Specify database port (default: 0).")
+  bscan_app.add_option("-t,--dbport", db_port, "Specify database port.")
       ->type_name("<port>");
 
   std::string db_user = "bareos";
-  bscan_app
-      .add_option("-u,--dbuser", db_user,
-                  "Specify database user name (default: bareos).")
-      ->type_name("<user>");
+  bscan_app.add_option("-u,--dbuser", db_user, "Specify database user name.")
+      ->type_name("<user>")
+      ->capture_default_str();
 
   bscan_app.add_flag("-m,--update-volume-info", update_vol_info,
                      "Update media info in database.");
@@ -250,7 +244,11 @@ int main(int argc, char* argv[])
       ->type_name("<directory>");
 
   std::string device_name;
-  bscan_app.add_option("device_name", device_name, "Specify device name.")
+  bscan_app
+      .add_option("device_name", device_name,
+                  "Specify the input device name (either as name of a Bareos "
+                  "Storage Daemon Device resource or identical to the Archive "
+                  "Device in a Bareos Storage Daemon Device resource).")
       ->required()
       ->type_name(" ");
 
