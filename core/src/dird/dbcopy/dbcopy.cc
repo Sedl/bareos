@@ -32,7 +32,6 @@
 #include "dird/get_database_connection.h"
 #include "dird/jcr_private.h"
 #include "dird/job.h"
-#include "include/make_unique.h"
 #include "lib/parse_conf.h"
 #include "lib/util.h"
 

@@ -42,7 +42,6 @@
 #include "filed/verify.h"
 #include "findlib/enable_priv.h"
 #include "findlib/shadowing.h"
-#include "include/make_unique.h"
 #include "lib/berrno.h"
 #include "lib/bget_msg.h"
 #include "lib/bnet.h"
@@ -375,9 +374,7 @@ static inline bool AreMaxConcurrentJobsExceeded()
   JobControlRecord* jcr;
   unsigned int cnt = 0;
 
-  foreach_jcr (jcr) {
-    cnt++;
-  }
+  foreach_jcr (jcr) { cnt++; }
   endeach_jcr(jcr);
 
   return (cnt >= me->MaxConcurrentJobs) ? true : false;

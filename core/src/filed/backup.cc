@@ -45,7 +45,6 @@
 #include "lib/btimers.h"
 #include "lib/parse_conf.h"
 #include "lib/util.h"
-#include "include/make_unique.h"
 
 namespace filedaemon {
 

@@ -22,7 +22,6 @@
 #include "include/bareos.h"
 #include "cats/cats.h"
 #include "dird/dbcopy/database_column_descriptions.h"
-#include "include/make_unique.h"
 #include "lib/util.h"
 
 #include <algorithm>

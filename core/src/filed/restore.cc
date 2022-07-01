@@ -44,7 +44,6 @@
 #include "lib/bsock.h"
 #include "lib/edit.h"
 #include "lib/parse_conf.h"
-#include "include/make_unique.h"
 
 #ifdef HAVE_WIN32
 #  include "win32/findlib/win32.h"
@@ -176,9 +175,7 @@ static inline void DropDelayedDataStreams(r_ctx& rctx, bool reuse)
 
   if (!rctx.delayed_streams || rctx.delayed_streams->empty()) { return; }
 
-  foreach_alist (dds, rctx.delayed_streams) {
-    free(dds->content);
-  }
+  foreach_alist (dds, rctx.delayed_streams) { free(dds->content); }
 
   rctx.delayed_streams->destroy();
   if (reuse) { rctx.delayed_streams->init(10, owned_by_alist); }

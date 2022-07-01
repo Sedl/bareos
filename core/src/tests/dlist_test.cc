@@ -34,7 +34,6 @@
 #  include "gtest/gtest.h"
 #  include "include/bareos.h"
 #endif
-#include "include/make_unique.h"
 #include "lib/dlist.h"
 
 #include <memory>
@@ -304,7 +303,6 @@ TEST(dlist, dlistString)
     buf[0]--;
   }
   dlistString* node;
-  foreach_dlist (node, chain) {
-  }
+  foreach_dlist (node, chain) {}
   chain->destroy();
 }

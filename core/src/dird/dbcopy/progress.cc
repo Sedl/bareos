@@ -22,7 +22,6 @@
 #include "include/bareos.h"
 #include "cats/cats.h"
 #include "dird/dbcopy/progress.h"
-#include "include/make_unique.h"
 
 #include <array>
 #include <iomanip>

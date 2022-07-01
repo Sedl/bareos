@@ -21,7 +21,6 @@
 
 #include "include/bareos.h"
 #include "include/jcr.h"
-#include "include/make_unique.h"
 #include "lib/berrno.h"
 #include "lib/bsock.h"
 #include "lib/thread_list.h"

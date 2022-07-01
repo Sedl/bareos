@@ -25,7 +25,6 @@
 #include "dird/dbcopy/database_table_descriptions.h"
 #include "dird/dbcopy/progress.h"
 #include "dird/dbcopy/row_data.h"
-#include "include/make_unique.h"
 
 #include <cassert>
 #include <chrono>

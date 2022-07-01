@@ -61,7 +61,6 @@
 #include "stored/wait.h"
 #include "stored/job.h"
 #include "stored/mac.h"
-#include "include/make_unique.h"
 #include "include/protocol_types.h"
 #include "lib/berrno.h"
 #include "lib/bnet.h"
@@ -75,6 +74,8 @@
 #include "lib/watchdog.h"
 #include "lib/qualified_resource_name_type_converter.h"
 #include "include/jcr.h"
+
+#include <memory>
 
 /* Imported variables */
 extern void terminate_child();
@@ -217,9 +218,7 @@ static inline bool AreMaxConcurrentJobsExceeded()
   JobControlRecord* jcr;
   unsigned int cnt = 0;
 
-  foreach_jcr (jcr) {
-    cnt++;
-  }
+  foreach_jcr (jcr) { cnt++; }
   endeach_jcr(jcr);
 
   return (cnt >= me->MaxConcurrentJobs) ? true : false;

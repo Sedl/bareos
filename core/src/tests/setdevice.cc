@@ -32,7 +32,6 @@
 #include "dird/ua_server.h"
 #include "include/jcr.h"
 #include "include/job_types.h"
-#include "include/make_unique.h"
 #include "lib/output_formatter.h"
 
 #include <array>

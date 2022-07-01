@@ -49,7 +49,6 @@
 #include "lib/berrno.h"
 #include "lib/parse_conf.h"
 #include "lib/tree.h"
-#include "include/make_unique.h"
 #include "include/protocol_types.h"
 
 namespace directordaemon {

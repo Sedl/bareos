@@ -28,7 +28,6 @@
 #  include "include/bareos.h"
 #endif
 
-#include "include/make_unique.h"
 #include "lib/bsock.h"
 #include "lib/bsock_tcp.h"
 #include "lib/cram_md5.h"

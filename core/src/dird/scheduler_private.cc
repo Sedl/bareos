@@ -34,7 +34,6 @@
 #include "dird/scheduler_system_time_source.h"
 #include "dird/scheduler_time_adapter.h"
 #include "dird/storage.h"
-#include "include/make_unique.h"
 #include "lib/parse_conf.h"
 
 #include <chrono>
@@ -183,8 +182,7 @@ void SchedulerPrivate::FillSchedulerJobQueueOrSleep()
 
 static time_t CalculateRuntime(time_t time, uint32_t minute)
 {
-  struct tm tm {
-  };
+  struct tm tm {};
   Blocaltime(&time, &tm);
   tm.tm_min = minute;
   tm.tm_sec = 0;

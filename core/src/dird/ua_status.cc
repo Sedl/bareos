@@ -50,8 +50,6 @@
 #include "lib/parse_conf.h"
 #include "lib/util.h"
 
-#include "include/make_unique.h"
-
 #include <memory>
 
 #define DEFAULT_STATUS_SCHED_DAYS 7
@@ -270,9 +268,7 @@ static void DoAllStatus(UaContext* ua)
   /* Count Storage items */
   LockRes(my_config);
   i = 0;
-  foreach_res (store, R_STORAGE) {
-    i++;
-  }
+  foreach_res (store, R_STORAGE) { i++; }
   unique_store = (StorageResource**)malloc(i * sizeof(StorageResource));
   /* Find Unique Storage address/port */
   i = 0;
@@ -305,9 +301,7 @@ static void DoAllStatus(UaContext* ua)
   /* Count Client items */
   LockRes(my_config);
   i = 0;
-  foreach_res (client, R_CLIENT) {
-    i++;
-  }
+  foreach_res (client, R_CLIENT) { i++; }
   unique_client = (ClientResource**)malloc(i * sizeof(ClientResource));
   /* Find Unique Client address/port */
   i = 0;
@@ -926,9 +920,7 @@ static void ListScheduledJobs(UaContext* ua)
     }
   } /* end for loop over resources */
   UnlockRes(my_config);
-  foreach_dlist (sp, sched) {
-    PrtRuntime(ua, sp);
-  }
+  foreach_dlist (sp, sched) { PrtRuntime(ua, sp); }
   if (num_jobs == 0 && !ua->api) { ua->SendMsg(_("No Scheduled Jobs.\n")); }
   if (!ua->api) ua->SendMsg("====\n");
   Dmsg0(200, "Leave list_sched_jobs_runs()\n");

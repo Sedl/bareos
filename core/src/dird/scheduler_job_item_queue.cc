@@ -21,7 +21,6 @@
 
 #include "include/bareos.h"
 #include "dird/dird_conf.h"
-#include "include/make_unique.h"
 #include "scheduler_job_item_queue.h"
 
 #include <iostream>

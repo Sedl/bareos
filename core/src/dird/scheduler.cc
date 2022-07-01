@@ -39,7 +39,6 @@
 #include "dird/jcr_private.h"
 #include "dird/job.h"
 #include "dird/storage.h"
-#include "include/make_unique.h"
 #include "lib/parse_conf.h"
 
 class JobControlRecord;

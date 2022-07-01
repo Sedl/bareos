@@ -27,7 +27,6 @@
 #endif
 
 #include "include/jcr.h"
-#include "include/make_unique.h"
 #include "lib/thread_specific_data.h"
 
 #include <thread>
