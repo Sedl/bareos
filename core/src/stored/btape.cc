@@ -252,7 +252,7 @@ int main(int margc, char* margv[])
             configfile = strdup(val.front().c_str());
             return true;
           },
-          "Use <path> as configuration file or directory.")
+          "Specify a configuration file or directory.")
       ->check(CLI::ExistingPath)
       ->type_name("<path>");
 
@@ -273,7 +273,11 @@ int main(int margc, char* margv[])
   AddVerboseOption(btape_app);
 
   std::string archive_name;
-  btape_app.add_option("archive_name", archive_name, "Specify device name.")
+  btape_app
+      .add_option("bareos-archive-device-name", archive_name,
+                  "Specify the input device name (either as name of a Bareos "
+                  "Storage Daemon Device resource or identical to the Archive "
+                  "Device in a Bareos Storage Daemon Device resource).")
       ->required()
       ->type_name(" ");
 
