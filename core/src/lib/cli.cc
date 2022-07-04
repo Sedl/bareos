@@ -39,6 +39,9 @@ class BareosCliFormatter : public CLI::Formatter {
         }
         if (opt->get_expected_max() == CLI::detail::expected_max_vector_size) {
           out << " ...";
+        } else if (opt->get_expected_max() > 1) {
+          out << " x [" << opt->get_expected_min() << ".."
+              << opt->get_expected_max() << "]";
         } else if (opt->get_expected_min() > 1) {
           out << " x " << opt->get_expected();
         }
