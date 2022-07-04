@@ -848,7 +848,7 @@ int main(int argc, char* argv[])
 
   console_app
       .add_option(
-          "configuration,-c,--config",
+          "-c,--config",
           [](std::vector<std::string> val) {
             if (configfile != nullptr) { free(configfile); }
             configfile = strdup(val.front().c_str());
