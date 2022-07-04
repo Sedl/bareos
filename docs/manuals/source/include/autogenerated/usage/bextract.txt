@@ -3,9 +3,9 @@ Usage: bextract [OPTIONS] bareos-archive-device-name target-directory
 Positionals:
     bareos-archive-device-name  
         REQUIRED
-        Specify the input device name (either as name of a Bareos Storage Daemon 
-        Device resource or identical to the Archive Device in a Bareos Storage 
-        Daemon Device resource). 
+        Specify the input device name (either as name of a Bareos Storage 
+        Daemon Device resource or identical to the Archive Device in a Bareos 
+        Storage Daemon Device resource). 
 
     target-directory  
         REQUIRED
@@ -26,8 +26,8 @@ Options:
         Use <path> as configuration file or directory. 
 
     -D,--director <director>
-        Specify a director name specified in the storage. Configuration file for 
-        the Key Encryption Key selection. 
+        Specify a director name specified in the storage. Configuration file 
+        for the Key Encryption Key selection. 
 
     -d,--debug-level <level>:NONNEGATIVE
         Set debug level to <level>. 
