@@ -1,9 +1,4 @@
-Usage: bconsole [OPTIONS] [configuration]
-
-Positionals:
-    configuration <path>:PATH(existing)
-        Use <path> as configuration file or directory 
-
+Usage: bconsole [OPTIONS]
 
 Options:
     -h,-?,--help

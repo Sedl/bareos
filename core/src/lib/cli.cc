@@ -97,7 +97,7 @@ class BareosCliFormatter : public CLI::Formatter {
 
  protected:
   std::string indent = std::string("    ");
-  std::size_t max_line_length = 80;
+  std::size_t max_line_length = 79;
 
   std::ostream& format_paragraph(std::ostream& out,
                                  const std::string& text,
