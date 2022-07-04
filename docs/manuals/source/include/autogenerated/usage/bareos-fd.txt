@@ -65,6 +65,3 @@ Options:
     --xs,--export-schema
         Excludes: --xc
         Print configuration schema in JSON format and exit 
-
-    -z
-        Switch network debugging on 
