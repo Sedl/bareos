@@ -50,7 +50,7 @@ static void ParseCommandLine(int argc, char* argv[], cl_opts& cl)
 
   tray_monitor_app
       .add_option(
-          "configuration,-c,--config",
+          "-c,--config",
           [&cl](std::vector<std::string> val) {
             if (cl.configfile_) { free(static_cast<void*>(cl.configfile_)); }
             cl.configfile_ = strdup(val.front().c_str());
