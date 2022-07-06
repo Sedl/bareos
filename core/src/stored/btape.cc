@@ -133,7 +133,7 @@ static int argc;
 static int quickie_count = 0;
 static uint64_t write_count = 0;
 static BootStrapRecord* bsr = NULL;
-static int no_signals = FALSE;
+static int signals = TRUE;
 static bool ok;
 static int stop = 0;
 static uint64_t vol_size;
@@ -241,7 +241,7 @@ int main(int margc, char* margv[])
             return true;
           },
           "Specify a bootstrap file.")
-      ->check(CLI::ExistingPath)
+      ->check(CLI::ExistingFile)
       ->type_name("<file>");
 
   btape_app
@@ -268,7 +268,8 @@ int main(int margc, char* margv[])
   btape_app.add_flag("-p,--proceed-io", forge_on,
                      "Proceed inspite of IO errors");
 
-  btape_app.add_flag("-s,--no-signals", no_signals, "Turn off signals.");
+  btape_app.add_flag("-s{false},--no-signals{false}", signals,
+                     "Turn off signals.");
 
   AddVerboseOption(btape_app);
 
@@ -291,7 +292,7 @@ int main(int margc, char* margv[])
   cmd = GetPoolMemory(PM_FNAME);
   args = GetPoolMemory(PM_FNAME);
 
-  if (!no_signals) { InitSignals(TerminateBtape); }
+  if (signals) { InitSignals(TerminateBtape); }
 
   daemon_start_time = time(nullptr);
 
