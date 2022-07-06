@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
   std::string bsrName;
   bls_app
       .add_option("-b,--parse-bootstrap", bsrName, "Specify a bootstrap file.")
-      ->check(CLI::ExistingPath)
+      ->check(CLI::ExistingFile)
       ->type_name("<file>");
 
   bls_app

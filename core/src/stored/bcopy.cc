@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
   InitMsg(nullptr, nullptr);
 
   CLI::App bcopy_app;
-  InitCLIApp(bcopy_app, "The Bareos Copy tool.", 2002);
+  InitCLIApp(bcopy_app, "The Bareos Volume Copy tool.", 2002);
 
   bcopy_app
       .add_option(
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
             return true;
           },
           "Specify a bootstrap file.")
-      ->check(CLI::ExistingPath)
+      ->check(CLI::ExistingFile)
       ->type_name("<bootstrap>");
 
   bcopy_app

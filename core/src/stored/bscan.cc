@@ -168,7 +168,7 @@ int main(int argc, char* argv[])
             return true;
           },
           "Specify a bootstrap file")
-      ->check(CLI::ExistingPath)
+      ->check(CLI::ExistingFile)
       ->type_name("<bootstrap>");
 
   bscan_app
