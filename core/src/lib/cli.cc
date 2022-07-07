@@ -138,6 +138,13 @@ void InitCLIApp(CLI::App& app, std::string description, int fsfyear)
   app.description(description);
   app.set_help_flag("-h,--help,-?", "Print this help message and exit.");
   app.set_version_flag("--version", kBareosVersionStrings.Full);
+  app.add_flag(
+      "--license",
+      [](std::int64_t) {
+        printf("%s", LICENSE_TEXT);
+        exit(0);
+      },
+      "Print Bareos license information (AGPL-3 and others) and exit.");
   app.formatter(std::make_shared<BareosCliFormatter>());
 #ifdef HAVE_WIN32
   app.allow_windows_style_options();
